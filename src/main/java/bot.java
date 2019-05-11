@@ -47,14 +47,14 @@ public class bot extends TelegramLongPollingBot {
             if (txt.equals("/start")) {
                 sendMsg(msg, "Ну шо ты пездюх?");
             }else if(txt.equals("/pic")){
-                if(snap.f_id == ""Слушай, иди нахуй" +"\n"+"/start"+"\n"+"/pic""){
+                if(snap.f_id == "пусто, отправьте мне изображение"){
                     sendMsg(msg, snap.f_id);
                 }else{
                     sendPh(msg, snap.f_id);
                 }
             }
             else {
-                sendMsg(msg, "Я не знаю таких команд");
+                sendMsg(msg, "Слушай, иди нахуй" +"\n"+"/start"+"\n"+"/pic");
             }
         }
         else if(msg.hasPhoto()){
