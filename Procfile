@@ -1,1 +1,1 @@
-java -jar bot.jar
+java -jar bot-1.0-SNAPSHOT.jar
