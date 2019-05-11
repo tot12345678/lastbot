@@ -8,8 +8,11 @@ import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
-import java.util.Comparator;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
 
 public class bot extends TelegramLongPollingBot {
     Photo snap = new Photo();
@@ -37,7 +40,7 @@ public class bot extends TelegramLongPollingBot {
 
     //основная часть кода бота
 
-    public void onUpdateReceived(Update update) {
+      public void onUpdateReceived(Update update) {
         Message msg = update.getMessage(); // Это нам понадобится
         if(msg.hasText()) {
             String txt = msg.getText();
@@ -70,6 +73,7 @@ public class bot extends TelegramLongPollingBot {
     @SuppressWarnings("deprecation") // Означает то, что в новых версиях метод уберут или заменят
     //ОТПРАВКА ТЕКСТА
     private void sendMsg(Message msg, String txt) {
+        log(msg, txt);
         SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
         s.setText(txt).setChatId(msg.getChatId());
         try { //Чтобы не крашнулась программа при вылете Exception
@@ -81,6 +85,7 @@ public class bot extends TelegramLongPollingBot {
 
     //ОТПРАВКА ФОТО
     private void sendPh(Message msg,String f_id) {
+        log(msg, f_id);
         SendPhoto s = new SendPhoto().setPhoto(f_id).setChatId(msg.getChatId());
         try { //Чтобы не крашнулась программа при вылете Exception
             execute(s);
@@ -89,6 +94,20 @@ public class bot extends TelegramLongPollingBot {
         }
     }
 
+    private void log(Message msg, String bot_answer) {
+        String user_first_name = msg.getChat().getFirstName();
+        String user_last_name = msg.getChat().getLastName();
+        long user_id = msg.getChat().getId();
+        String txt = "был отправлен не текстовый документ";
+        if (msg.hasText())
+            txt = msg.getText();
+        System.out.println("\n ----------------------------");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        System.out.println("Message from " + user_first_name + " " + user_last_name + ". (id = " + user_id + ") \n Text - " + txt);
+        System.out.println("Bot answer: \n Text - " + bot_answer);
+    }
 }
 //СОХРАНЕНИЕ ФОТО
 class Photo{
