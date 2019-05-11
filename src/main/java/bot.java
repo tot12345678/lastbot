@@ -27,7 +27,6 @@ public class bot extends TelegramLongPollingBot {
         } catch (TelegramApiRequestException e) {
             e.printStackTrace();
         }
-        System.out.println("Бота поднял, но не Рассею((");
     }
 
     public String getBotUsername() {
@@ -48,7 +47,7 @@ public class bot extends TelegramLongPollingBot {
             if (txt.equals("/start")) {
                 sendMsg(msg, "Ну шо ты пездюх?");
             }else if(txt.equals("/pic")){
-                if(snap.f_id == "пусто, отправьте мне изображение"){
+                if(snap.f_id == ""Слушай, иди нахуй" +"\n"+"/start"+"\n"+"/pic""){
                     sendMsg(msg, snap.f_id);
                 }else{
                     sendPh(msg, snap.f_id);
