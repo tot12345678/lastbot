@@ -1,1 +1,1 @@
-java -jar bot-1.0-SNAPSHOT.jar
+java $JAVA_OPTS -cp target/classes:target/dependency/* bot
