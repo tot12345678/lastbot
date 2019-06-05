@@ -20,34 +20,26 @@ public class bot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-
     public String getBotUsername() {
         return "Ofwgkta_bot";
-    }
-
-    public String getBotToken() {
+    }public String getBotToken() {
         return "831206675:AAEhe93MAkyW3xw2TBKIE08zKIhb4wDeJII";
     }
 
-    //основная часть кода бота
 
     public void onUpdateReceived(Update update) {
         MessageHandMade msg = new MessageHandMade(update.getMessage());
+        Send s = new Send();
+        switch (msg.getText()) {
+            case "/get_balance":
+                s.sendMsg(msg.getChatId(), Send_Buttons.balance());
+            case "/get_settings":
+                s.sendMsg(msg.getChatId(), Send_Buttons.settings());
+            default:
+                s.sendMsg(msg.getChatId(), "Главное меню", Send_Buttons.start_chat());
+                break;
 
+        }
 
     }
-
-
-//    private void sendMsg(Message msg, String txt) {
-//        SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
-//        s.setText(txt).setChatId(msg.getChatId());
-//        try { //Чтобы не крашнулась программа при вылете Exception
-//            execute(s);
-//        } catch (TelegramApiException update) {
-//            update.printStackTrace();
-//        }
-//    }
-
-    //ОТПРАВКА ФОТО
-
 }
