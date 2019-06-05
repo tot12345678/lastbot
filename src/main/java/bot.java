@@ -23,7 +23,7 @@ public class bot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return "Ofwgkta_bot";
     }public String getBotToken() {
-        return "831206675:AAEhe93MAkyW3xw2TBKIE08zKIhb4wDeJII";
+        return "/";
     }
 
 
