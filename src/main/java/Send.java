@@ -14,7 +14,7 @@ public class Send extends bot{
             update.printStackTrace();
         }
     }
-    public  void sendMsg(long chat_id, String text, ReplyKeyboardMarkup butt) {
+    void sendMsg(long chat_id, String text, ReplyKeyboardMarkup butt) {
         SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
         s.setChatId(chat_id).setText(text).setReplyMarkup(butt);
         try { //Чтобы не крашнулась программа при вылете Exception

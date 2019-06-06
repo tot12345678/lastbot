@@ -3,7 +3,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 
 import java.util.ArrayList;
 
-public class Buttons {
+class Buttons {
      static ReplyKeyboardMarkup start_chat(){
         ReplyKeyboardMarkup replyKeyboardMarkup =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
