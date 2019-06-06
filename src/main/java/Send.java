@@ -1,7 +1,7 @@
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
 
 public class Send extends bot{
 
@@ -14,7 +14,7 @@ public class Send extends bot{
             update.printStackTrace();
         }
     }
-    public  void sendMsg(long chat_id,String text, InlineKeyboardMarkup butt) {
+    public  void sendMsg(long chat_id, String text, ReplyKeyboardMarkup butt) {
         SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
         s.setChatId(chat_id).setText(text).setReplyMarkup(butt);
         try { //Чтобы не крашнулась программа при вылете Exception
@@ -23,4 +23,5 @@ public class Send extends bot{
             update.printStackTrace();
         }
     }
+
 }
