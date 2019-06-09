@@ -19,15 +19,16 @@ public class bot extends TelegramLongPollingBot {
         }
     }
     public String getBotUsername() {
-        return "Ofwgkta_bot";
+        return System.getenv("username");
     }public String getBotToken() {
-        return "831206675:AAEhe93MAkyW3xw2TBKIE08zKIhb4wDeJII";
+        return System.getenv("token");
     }
 
 
     User user, admin;
 
     public void onUpdateReceived(Update update) {
+
         if(update.getMessage().getChat().getId() == 301289177) {
             (admin = new Admin(update)).message_in();
         } else{

@@ -20,6 +20,7 @@ class Guest extends User {
     }
     @Override
     void message_in() {
+        logger();
         switch (text) {
             case("Content"):
                 this.sendMsg(guest_chat_id, text, Buttons.content());
@@ -33,8 +34,10 @@ class Guest extends User {
             case("Settings"):
                 this.sendMsg(guest_chat_id, text, Buttons.settings());
                 break;
+            case("Main menu"):
+                this.sendMsg(guest_chat_id, text, Buttons.start_chat());
+                break;
             default:
-                this.sendMsg(guest_chat_id, "Главное меню", Buttons.start_chat());
                 break;
         }
     }

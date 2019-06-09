@@ -52,11 +52,14 @@ class Buttons {
     static ReplyKeyboardMarkup balance(){
         ReplyKeyboardMarkup balance =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row0 = new KeyboardRow();
         KeyboardRow row1 = new KeyboardRow();
         KeyboardRow row2 = new KeyboardRow();
+        row0.add("Тут вот данные через бд");
         row1.add("Withdraw money");
         row1.add("Deposit money");
         row2.add("Main menu");
+        keyboard.add(row0);
         keyboard.add(row1);
         keyboard.add(row2);
         balance.setKeyboard(keyboard);
