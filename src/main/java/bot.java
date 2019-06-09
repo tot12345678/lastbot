@@ -4,6 +4,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
+
 public class bot extends TelegramLongPollingBot {
     public static void main(String[] args) {
         System.err.close();
@@ -20,29 +21,18 @@ public class bot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return "Ofwgkta_bot";
     }public String getBotToken() {
-        return "";
+        return "831206675:AAEhe93MAkyW3xw2TBKIE08zKIhb4wDeJII";
     }
 
 
+    User user, admin;
+
     public void onUpdateReceived(Update update) {
-        MessageHandMade msg = new MessageHandMade(update.getMessage());
-        Send s = new Send();
-        switch (msg.getText()) {
-            case("Content"):
-                s.sendMsg(msg.getChatId(), msg.getText(), Buttons.content());
-                break;
-            case("Balance"):
-                s.sendMsg(msg.getChatId(), String.format("\uD83D\uDE0D Your balance: \uD83D\uDE0D\uD83C\uDF89 %1000d$",145), Buttons.balance());
-                break;
-            case("History"):
-                s.sendMsg(msg.getChatId(), msg.getText(), Buttons.history());
-                break;
-            case("Settings"):
-                s.sendMsg(msg.getChatId(), msg.getText(), Buttons.settings());
-                break;
-            default:
-                s.sendMsg(msg.getChatId(), "Главное меню", Buttons.start_chat());
-                break;
+        if(update.getMessage().getChat().getId() == 301289177) {
+            (admin = new Admin(update)).message_in();
+        } else{
+            (user= new Guest(update)).message_in();
         }
+
     }
 }
