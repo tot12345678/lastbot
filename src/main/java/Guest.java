@@ -21,6 +21,7 @@ class Guest extends User {
     @Override
     void message_in() {
         logger();
+
         switch (text) {
             case("Content"):
                 this.sendMsg(guest_chat_id, text, Buttons.content());
