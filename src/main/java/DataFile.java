@@ -5,20 +5,12 @@ import java.util.Scanner;
 
 class DataFile {
     private static HashMap<Long,Double> map_balance= new HashMap<>();
-    private static InputStream data_file;
     private static File file= new File("DataFile.txt");
 
-    static {
-        try {
-            data_file = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private static void updateMap() throws FileNotFoundException {
-        BufferedReader buf = new BufferedReader(new InputStreamReader(data_file = new FileInputStream(new File("DataFile.txt"))));
+        BufferedReader buf = new BufferedReader(new InputStreamReader(new FileInputStream(new File("DataFile.txt"))));
         Scanner sc = new Scanner(buf);
         StringBuilder builder = new StringBuilder();
         while(sc.hasNextLine()){
@@ -55,7 +47,7 @@ class DataFile {
         return map_balance.get(id);
 
     }
-    static double balance(long id) {
+    private static double balance(long id) {
         return map_balance.get(id);
 
     }
@@ -65,14 +57,14 @@ class DataFile {
         updateConfig();
     }
 
-    static void changeBalance(long id, double delta_sum) {
+    static void changeBalance(long id) {
         if(map_balance.get(id)==null){
             createBalance(id);
         }
         if(map_balance.get(id)<=0.0){
             return;
         }
-        double res = balance(id)-delta_sum;
+        double res = balance(id)- (double) 5;
         map_balance.put(id, res);
         updateConfig();
     }

@@ -1,7 +1,6 @@
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -52,7 +51,7 @@ class Subscriber extends User {
                 this.sendMsg(chat_id, text, Buttons.start_chat());
                 break;
             case("Withdraw money"):
-                DataFile.changeBalance(chat_id, 5);
+                DataFile.changeBalance(chat_id);
             default:
                 break;
         }
