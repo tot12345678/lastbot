@@ -4,6 +4,9 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 public class bot extends TelegramLongPollingBot {
     public static void main(String[] args) {
@@ -20,6 +23,7 @@ public class bot extends TelegramLongPollingBot {
     }
     public String getBotUsername() {
         return System.getenv("username");
+
     }public String getBotToken() {
         return System.getenv("token");
     }
@@ -28,12 +32,20 @@ public class bot extends TelegramLongPollingBot {
     User user, admin;
 
     public void onUpdateReceived(Update update) {
+        String  id = Long.toString(update.getMessage().getChat().getId());
+        if(id.equals("301289177")) {
+            try {
+                (admin = new Admin(update)).message_in();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
 
-        if(update.getMessage().getChat().getId() == 301289177) {
-            (admin = new Admin(update)).message_in();
-        } else{
-            (user= new Guest(update)).message_in();
+            try {
+                (user= new Subscriber(update)).message_in();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }

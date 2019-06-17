@@ -1,6 +1,8 @@
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 class Buttons {
      static ReplyKeyboardMarkup start_chat(){
@@ -21,7 +23,7 @@ class Buttons {
         replyKeyboardMarkup.setKeyboard(keyboard);
         return (replyKeyboardMarkup);
     }
-    //    public static InlineKeyboardMarkup line_but(){
+//        public static InlineKeyboardMarkup line_but(){
 //        InlineKeyboardMarkup inlineKeyboardMarkup =new InlineKeyboardMarkup();
 //        List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
 //
@@ -49,13 +51,13 @@ class Buttons {
 
         return null;
     }
-    static ReplyKeyboardMarkup balance(){
+    static  ReplyKeyboardMarkup balance(long chat_id) throws IOException {
         ReplyKeyboardMarkup balance =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row0 = new KeyboardRow();
         KeyboardRow row1 = new KeyboardRow();
         KeyboardRow row2 = new KeyboardRow();
-        row0.add("Тут вот данные через бд");
+        row0.add(Double.toString(DataFile.getBalance(chat_id)));
         row1.add("Withdraw money");
         row1.add("Deposit money");
         row2.add("Main menu");
@@ -73,5 +75,4 @@ class Buttons {
     static ReplyKeyboardMarkup settings(){
         return null;
     }
-
 }

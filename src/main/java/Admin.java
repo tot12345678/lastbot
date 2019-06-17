@@ -1,42 +1,50 @@
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Admin extends User {
 
-    private long  guest_chat_id;
+    private long  chat_id;
     private String text,id, name, surname, level;
 
-    Admin(Update update){
+    Admin(Update update) {
+        super(update);
         Message msg = update.getMessage();
         text = msg.getText();
-        guest_chat_id = msg.getChatId();
+        chat_id = msg.getChatId();
         id = msg.getChat().getUserName();
         name = msg.getChat().getFirstName();
         surname = msg.getChat().getLastName();
-        level = "Admin";
+        level = "ADMIN";
     }
+
     @Override
-    void message_in() {
+    void message_in() throws IOException {
         logger();
         switch (text) {
             case("Content"):
-                this.sendMsg(guest_chat_id, text, Buttons.content());
+                this.sendMsg(chat_id, text, Buttons.content());
                 break;
             case("Balance"):
-                this.sendMsg(guest_chat_id, "Пиздец ты нищий", Buttons.balance());
+                    this.sendMsg(chat_id, text, Buttons.balance(chat_id));
                 break;
             case("History"):
-                this.sendMsg(guest_chat_id, text, Buttons.history());
+                this.sendMsg(chat_id, text, Buttons.history());
                 break;
             case("Settings"):
-                this.sendMsg(guest_chat_id, text, Buttons.settings());
+                this.sendMsg(chat_id, text, Buttons.settings());
                 break;
+            case("Main menu"):
+                this.sendMsg(chat_id, text, Buttons.start_chat());
+                break;
+            case("Withdraw money"):
+                DataFile.changeBalance(chat_id, 5);
             default:
-                this.sendMsg(guest_chat_id, "Главное меню", Buttons.start_chat());
                 break;
         }
     }

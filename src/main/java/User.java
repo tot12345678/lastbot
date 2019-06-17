@@ -1,18 +1,22 @@
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class User extends bot {
 
-    void message_in(){
+    User(Update update){
+
+    }
+    void message_in() throws IOException {
         System.out.println("Макет юзера");
         logger();
+
     }
     void logger(){
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -29,7 +33,8 @@ class User extends bot {
             update.printStackTrace();
         }
     }
-    void sendMsg(long chat_id, String text, ReplyKeyboardMarkup butt) {
+    <T> void sendMsg(long chat_id, T parameter, ReplyKeyboardMarkup butt) {
+        String text = parameter.toString();
         SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
         s.setChatId(chat_id).setText(text).setReplyMarkup(butt);
         try { //Чтобы не крашнулась программа при вылете Exception
