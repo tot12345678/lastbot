@@ -1,10 +1,14 @@
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 class Buttons {
-     static ReplyKeyboardMarkup start_chat(){
+    static ReplyKeyboardMarkup start_chat(){
         ReplyKeyboardMarkup replyKeyboardMarkup =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row1 = new KeyboardRow();
@@ -22,34 +26,47 @@ class Buttons {
         replyKeyboardMarkup.setKeyboard(keyboard);
         return (replyKeyboardMarkup);
     }
-//        public static InlineKeyboardMarkup line_but(){
-//        InlineKeyboardMarkup inlineKeyboardMarkup =new InlineKeyboardMarkup();
-//        List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
-//
-//        List<InlineKeyboardButton> row1 = new ArrayList<>();
-//        row1.add(new InlineKeyboardButton().setText("Баланс")  //создает строку кнопок
-//                .setCallbackData("/get_balance"));
-//
-//        List<InlineKeyboardButton> row2 = new ArrayList<>();
-//        row2.add(new InlineKeyboardButton().setText("Магазин")  //создает строку кнопок
-//                .setCallbackData("magazine()"));
-//
-//        List<InlineKeyboardButton> row3 = new ArrayList<>();
-//        row3.add(new InlineKeyboardButton().setText("Настройки")  //создает строку кнопок
-//                .setCallbackData("settings()"));
-//
-//        rowList.add(row1);
-//        rowList.add(row2);
-//        rowList.add(row3);
-//
-//        inlineKeyboardMarkup.setKeyboard(rowList);
-//        inlineKeyboardMarkup.se
-//        return inlineKeyboardMarkup;
-//    }
-    static ReplyKeyboardMarkup content() {
 
-        return null;
+    static InlineKeyboardMarkup with_asist(){
+        int i = 5;
+        InlineKeyboardMarkup inlineKeyboardMarkup =new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowList= new ArrayList<>();
+
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        row1.add(new InlineKeyboardButton().setText(Integer.toString(i))  //создает строку кнопок
+                .setCallbackData(String.format("/get_%d",i*=2)));
+        row1.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+        row1.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        row2.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+        row2.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+        row2.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+
+        List<InlineKeyboardButton> row3 = new ArrayList<>();
+        row3.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+        row3.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+        row3.add(new InlineKeyboardButton().setText(Integer.toString(i*=2))  //создает строку кнопок
+                .setCallbackData("/get_"+i));
+
+        rowList.add(row1);
+        rowList.add(row2);
+        rowList.add(row3);
+
+        inlineKeyboardMarkup.setKeyboard(rowList);
+        return inlineKeyboardMarkup;
     }
+//    public static ReplyKeyboardMarkup content() {
+//
+//        return null;
+//    }
     static  ReplyKeyboardMarkup balance(long chat_id) throws IOException {
         ReplyKeyboardMarkup balance =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
@@ -67,11 +84,11 @@ class Buttons {
         balance.setSelective(true).setResizeKeyboard(true).setOneTimeKeyboard(false);
         return balance;
     }
-    static ReplyKeyboardMarkup history() {
-
-        return null;
-    }
-    static ReplyKeyboardMarkup settings(){
-        return null;
-    }
+//    public static ReplyKeyboardMarkup history() {
+//
+//        return null;
+//    }
+//    public static ReplyKeyboardMarkup settings(){
+//        return null;
+//    }
 }

@@ -4,8 +4,6 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-import java.io.IOException;
-
 
 public class bot extends TelegramLongPollingBot {
     public static void main(String[] args) {
@@ -21,30 +19,16 @@ public class bot extends TelegramLongPollingBot {
         }
     }
     public String getBotUsername() {
-        return System.getenv("username");
+        //return System.getenv("username");
+        return "Ofwgkta_bot";
 
     }public String getBotToken() {
-        return System.getenv("token");
+        //return System.getenv("token");
+        return "831206675:AAEhe93MAkyW3xw2TBKIE08zKIhb4wDeJII";
     }
 
-
-    User user, admin;
-
     public void onUpdateReceived(Update update) {
-        String  id = Long.toString(update.getMessage().getChat().getId());
-        if(id.equals("301289177")) {
-            try {
-                (admin = new Admin(update)).message_in();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else {
-
-            try {
-                (user= new Subscriber(update)).message_in();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Menu menu = new Menu();
+        menu.message_in(update.getMessage());
     }
 }

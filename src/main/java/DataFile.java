@@ -5,9 +5,6 @@ import java.util.Scanner;
 
 class DataFile {
     private static HashMap<Long,Double> map_balance= new HashMap<>();
-    private static File file= new File("DataFile.txt");
-
-
 
     private static void updateMap() throws FileNotFoundException {
         BufferedReader buf = new BufferedReader(new InputStreamReader(new FileInputStream(new File("DataFile.txt"))));
@@ -23,7 +20,7 @@ class DataFile {
         }
     }
     private static void updateConfig() {
-        try(FileWriter writer = new FileWriter(file, false))
+        try(FileWriter writer = new FileWriter(new File("DataFile.txt"), false))
         {
             // запись всей строки
             for (Map.Entry<Long, Double> longDoubleEntry : map_balance.entrySet()) {
