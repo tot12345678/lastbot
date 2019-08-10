@@ -1,7 +1,9 @@
 import org.telegram.telegrambots.meta.api.objects.Message;
 
+import static java.lang.String.format;
 
-class MainControll extends Menu {
+
+class MainControll extends MailDelivery {
 
 
     @Override
@@ -16,9 +18,15 @@ class MainControll extends Menu {
                 sendMsg(chatId, text, Buttons.balance());
                 return;
             case "✅ Auto":
+                Bot.tumbler = !Bot.tumbler;
+                sendMsg(chatId, "Bot was stopped", Buttons.start_chat());
+                return;
             case "❌ Auto":
                 Bot.tumbler = !Bot.tumbler;
-                sendMsg(chatId, text, Buttons.start_chat());
+                sendMsg(chatId,
+                        "Bot turned on\n"+ format("Bot will spend %5.2f$ from your balance" +
+                                        "\n You can change it in setting button", Configuration.getValue(chatId)),
+                                Buttons.start_chat());
                 return;
             case "Settings":
                 sendMsg(chatId, text, Buttons.settings(chatId));

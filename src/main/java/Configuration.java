@@ -39,11 +39,11 @@ class Configuration {
 
     }
 
-    static double getBalance(long id) {
+    static double getValue(long id) {
         try{
         updateMap();
         }catch (FileNotFoundException e){
-            System.out.println("getBalance");
+            System.out.println("getValue");
         }
         if(tradeValueMap.get(id)==null){
             createBalance(id);

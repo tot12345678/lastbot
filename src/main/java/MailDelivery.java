@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Menu extends Bot {
+public class MailDelivery extends Bot {
 
 
     void message_in(Message message) {
@@ -23,7 +23,7 @@ public class Menu extends Bot {
         System.out.printf("Был совершен вход %s\n",dateFormat.format(date));
     }
 
-<T,E> void sendMsg(long chat_id, T parameter, E butt) {
+    <T,E> void sendMsg(long chat_id, T parameter, E butt) {
         String text = parameter.toString();
         SendMessage s = new SendMessage();// Боту может писать не один человек, и поэтому чтобы отправить сообщение, грубо говоря нужно узнать куда его отправлять
         s.setChatId(chat_id).setText(text).setReplyMarkup((ReplyKeyboard)(butt));

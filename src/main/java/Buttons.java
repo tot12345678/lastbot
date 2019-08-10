@@ -25,7 +25,7 @@ class Buttons {
         row1.add("Balance");
         row2.add("Settings");
         row2.add("History");
-        row3.add("Support");
+        row3.add("Main menu");
         keyboard.add(row1);
         keyboard.add(row2);
         keyboard.add(row3);
@@ -78,14 +78,14 @@ class Buttons {
         KeyboardRow row0 = new KeyboardRow();
         KeyboardRow row1 = new KeyboardRow();
         try {
-            double value = Configuration.getBalance(chatId);
+            double value = Configuration.getValue(chatId);
             if (value < 0.01 ){
                 value = 0.0;
             }
             row0.add(format("Value of the step %5.2f$",value));
         } catch (Exception e) {
             Configuration.createBalance(chatId);
-            row0.add("Value of the step " + Configuration.getBalance(chatId));
+            row0.add("Value of the step " + Configuration.getValue(chatId));
         }
         row1.add("Main menu");
         keyboard.add(row0);

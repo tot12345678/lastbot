@@ -26,21 +26,21 @@ public class Bot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return System.getenv("username");
 
+
     }
 
     public String getBotToken() {
         return System.getenv("token");
 
+
     }
 
 
     public void onUpdateReceived(Update update) {
-        Menu menu = new Menu();
+        MailDelivery menu = new MailDelivery();
         try {
             menu.message_in(update.getMessage());
-        } catch (Exception ignored) {
-
-        }
+        } catch (Exception ignored){}
     }
 }
 
