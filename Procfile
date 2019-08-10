@@ -1,1 +1,1 @@
-worker: java -cp target/classes:target/dependency/* bot
+worker: java -cp target/classes:target/dependency/* Bot

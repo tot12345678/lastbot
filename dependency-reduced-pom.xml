@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>bot</mainClass>
+                  <mainClass>Bot</mainClass>
                 </transformer>
               </transformers>
             </configuration>
