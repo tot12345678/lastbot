@@ -28,8 +28,7 @@ class Guest extends User {
                 sendMsg(301289177, "new user added for our spider id: " +
                         message.getChatId(), null);
             } else {
-                sendMsg(chatId, "При регистрации будет отправленно сообщение " +
-                                "на почту админа с кодом\nВведите этот код для регистрации",
+                sendMsg(chatId, "Enter code of registration",
                         Buttons.registration());
             }
         }
