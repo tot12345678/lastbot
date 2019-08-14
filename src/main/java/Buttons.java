@@ -72,27 +72,38 @@ class Buttons {
 //
 //        return null;
 //    }
-    static  ReplyKeyboardMarkup settings(long chatId) {
-        ReplyKeyboardMarkup balance =new ReplyKeyboardMarkup();
+    static  ReplyKeyboardMarkup settings() {
+        ReplyKeyboardMarkup settings =new ReplyKeyboardMarkup();
         ArrayList<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow row0 = new KeyboardRow();
         KeyboardRow row1 = new KeyboardRow();
         try {
-            double value = Configuration.getValue(chatId);
+            double value = Configuration.getValue();
             if (value < 0.01 ){
-                value = 0.0;
+                value = 0.00;
             }
             row0.add(format("Value of the step %5.2f$",value));
         } catch (Exception e) {
-            Configuration.createBalance(chatId);
-            row0.add("Value of the step " + Configuration.getValue(chatId));
+            row0.add("Value of the step is not cheesed ");
         }
         row1.add("Main menu");
         keyboard.add(row0);
         keyboard.add(row1);
-        balance.setKeyboard(keyboard);
-        balance.setSelective(true).setResizeKeyboard(true).setOneTimeKeyboard(false);
-        return balance;
+        return settings.setKeyboard(keyboard)
+                .setSelective(true)
+                .setResizeKeyboard(true)
+                .setOneTimeKeyboard(false);
+    }
+    static  ReplyKeyboardMarkup registration() {
+        ReplyKeyboardMarkup registration =new ReplyKeyboardMarkup();
+        ArrayList<KeyboardRow> keyboard = new ArrayList<>();
+        KeyboardRow row0 = new KeyboardRow();
+        row0.add("Registration");
+        keyboard.add(row0);
+        return registration.setKeyboard(keyboard)
+                   .setSelective(true)
+                   .setResizeKeyboard(true)
+                   .setOneTimeKeyboard(false);
     }
 //    public static ReplyKeyboardMarkup history() {
 //

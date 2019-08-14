@@ -1,71 +1,49 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 class Configuration {
-    private static HashMap<Long, Double> tradeValueMap = new HashMap<>();
-
-    private static void updateMap() throws FileNotFoundException {
+    private static Double tradeValue;
+    private static void updateValue() throws FileNotFoundException {
         BufferedReader buf = new BufferedReader(new InputStreamReader(new FileInputStream(new File("DataFile.txt"))));
         Scanner sc = new Scanner(buf);
-        StringBuilder builder = new StringBuilder();
         while(sc.hasNextLine()){
-            builder.append(sc.nextLine());
-        }
-        String[] acc = builder.toString().split(" ");
-        for (String s : acc) {
-            String[] id_bal = s.split("=");
-            tradeValueMap.put(Long.parseLong(id_bal[0]), Double.parseDouble(id_bal[1]));
+            tradeValue = Double.parseDouble(sc.nextLine().replaceAll(".*/", ""));
         }
     }
-    static void putValueInMap(long id, double value){
-        tradeValueMap.put(id, value);
-        updateConfig();
+    static void changeValue(long id, double value){
+        tradeValue = value;
+        updateConfig(id);
     }
-    private static void updateConfig() {
+    private static void updateConfig(long id) {
         try(FileWriter writer = new FileWriter(new File("DataFile.txt"), false))
         {
-            // запись всей строки
-            for (Map.Entry<Long, Double> longDoubleEntry : tradeValueMap.entrySet()) {
-                writer.write(((longDoubleEntry)) + "\n");
-            }
+            writer.write((id + "/" + tradeValue) + "\n");
             writer.flush();
         }
         catch(IOException ex) {
-
             System.out.println(ex.getMessage());
         }
-
     }
 
-    static double getValue(long id) {
+    static double getValue() {
         try{
-        updateMap();
+            updateValue();
         }catch (FileNotFoundException e){
             System.out.println("getValue");
         }
-        if(tradeValueMap.get(id)==null){
-            createBalance(id);
-        }
-        return tradeValueMap.get(id);
-
+        return tradeValue;
     }
 
-    static void createBalance(long id) {
-        tradeValueMap.put(id, 0.0);
-        updateConfig();
-    }
 
 //    static void changeBalance(long id) {
-//        if(tradeValueMap.get(id)==null){
+//        if(tradeValue.get(id)==null){
 //            createBalance(id);
 //        }
-//        if(tradeValueMap.get(id)<=0.0){
+//        if(tradeValue.get(id)<=0.0){
 //            return;
 //        }
 //        double res = balance(id)- (double) 5;
-//        tradeValueMap.put(id, res);
+//        tradeValue.put(id, res);
 //        updateConfig();
 //    }
 

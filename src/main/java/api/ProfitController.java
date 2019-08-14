@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfitController implements Connection {
-
+    public static double oldpPrice = 0;
     private static HashMap<String, Double> buy_price = new HashMap<>(), //0
 //                            sell_price = new HashMap<>(),//1
 //                            last_trade = new HashMap<>(),//2
@@ -42,7 +42,7 @@ public class ProfitController implements Connection {
         }
     }
 
-    public static void calculationOfCreationOrders(String pair) {
+    public static void calculationOfCreationOrders(String pair, double value) {
         //getAvgOFsells(pair) if you need
         getOrdersInfo();
         Matcher m = Pattern.compile("BTC_USD$")
@@ -50,12 +50,14 @@ public class ProfitController implements Connection {
         while (m.find()){
             if (buy_price.get(pair) < avg.get(pair)
                     & buy_price.get(pair) < CryptoHelper.getAvgOfpair(pair, "buy")){
-//                Order.createOrder(pair, STEP / buy_price.get(pair)
-//                        , buy_price.get(pair), "buy");
-                System.out.println("Купил за " + buy_price.get(pair));
-                System.out.println("Продам за " + buy_price.get(pair)*1.004);
+                Order.createOrder(pair, value / buy_price.get(pair)
+                        , buy_price.get(pair), "buy");
+                oldpPrice = buy_price.get(pair);
+                System.out.println("order is created");
+                break;
             }
         }
+        System.out.println("order is't created");
     }
 
 }
