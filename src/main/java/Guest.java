@@ -24,11 +24,11 @@ class Guest extends User {
         } else {
             if (code.equals(message.getText())) {
                 AccessController.addUserInList(message.getChatId());
-                sendMsg(message.getChatId(), "Success", Buttons.start_chat());
-                sendMsg(301289177, "new user added for our spider id: " +
+                sendMsg(message.getChatId(), "\uD83D\uDC7ESuccess\uD83D\uDC7E", Buttons.start_chat());
+                sendMsg(301289177, "\uD83E\uDD18 New user added for our spider id: " +
                         message.getChatId(), null);
             } else {
-                sendMsg(chatId, "Enter code of registration",
+                sendMsg(chatId, "Press Registration and enter code of registration",
                         Buttons.registration());
             }
         }

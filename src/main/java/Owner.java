@@ -50,10 +50,10 @@ class Owner extends User {
             default:
                 try{
                     Configuration.changeValue(chatId, Double.parseDouble(text));
-                    sendMsg(chatId, text, Buttons.settings());
+                    sendMsg(chatId, "\uD83D\uDCA1 Value has been changed", Buttons.settings());
                     if(chatId != 301289177){
                         sendMsg(301289177,
-                                "User " + chatId + " just change value on " + Configuration.getValue()
+                                "♻ User " + chatId + " just change value on " + Configuration.getValue()
                                 , null);
                     }
                 }catch (Exception e){
